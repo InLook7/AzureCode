@@ -1,0 +1,19 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "AzureWebJobsSecretStorageType": "files",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+        "BlobConnectionString": "*hidden*",
+        "ContainerName": "container",
+        "AccountName": "storageaccountforapps",
+        "AccountKey": "*hidden*",
+        
+        "Server": "smtp.gmail.com",
+        "SenderName": "AzureGigaChad",
+        "SenderEmail": "forazuretestmy@gmail.com",
+        "Subject": "Notification from Azure",
+        "UsernameEmail": "forazuretestmy@gmail.com",
+        "PasswordEmail": "*hidden*"
+    }
+}

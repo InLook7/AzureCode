@@ -1,0 +1,48 @@
+﻿@page "/"
+@inject IUploadService _uploadService;
+
+<PageTitle>Home</PageTitle>
+
+<EditForm Model="@data">
+  <DataAnnotationsValidator />
+  <div class="form">
+  <form class="form-main">
+    <div class="form-group">
+      <h1 class="h">Fill the form</h1>
+      
+      <fieldset>
+      <InputText class="form-control" id="Email" placeholder="Email" @bind-Value="@data.Email"/>
+        <ValidationMessage For="@(() => data.Email)"/>
+      </fieldset>
+
+      <fieldset>
+        <InputFile class="btn btn-success" id="File" OnChange="OnInputFileChange" accept=".docx"/>
+        <ValidationMessage For="@(() => data.File)" />
+      </fieldset>
+    </div>
+
+    <button type="button" class="btn btn-primary" id="Button" @onclick="Submit" disabled="@(!context.Validate() || !context.IsModified())">Submit</button>
+    <i class="notification" style="color: @notificationColor">@notification</i>
+  </form>
+  </div>
+</EditForm>
+
+@code {
+
+  InputData data = new InputData();
+  string notification;
+  string notificationColor;
+  
+  private async void Submit()
+  { 
+      notification = await _uploadService.UploadFileAsync(data.File, data.Email);
+      notificationColor = notification == "File uploaded successfully!" ? "green" : "red";
+      StateHasChanged();
+  }
+  
+  private void OnInputFileChange (InputFileChangeEventArgs e)
+  {
+      data.File = e.File;
+  }
+  
+}
